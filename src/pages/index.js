@@ -1,0 +1,8 @@
+export {default as Home} from "./Home"
+export {default as Account} from "./Account"
+export {default as Header} from "./Header"
+export {default as Footer} from "./Footer"
+export {default as Product} from "./Product"
+export {default as Login} from "./Login"
+export {default as AddingProduct} from "./AddingProduct"
+export {default as EdittingProduct} from "./EdittingProduct"
