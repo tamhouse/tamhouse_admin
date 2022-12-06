@@ -41,7 +41,7 @@ const Account = () => {
                     <h2 className="tm-block-title">Account Settings</h2>
                     <form action="" className="tm-signup-form row">
                         <div className="form-group col-lg-6">
-                        <label for="name">Account Name</label>
+                        <label htmlFor="name">Account Name</label>
                         <input
                             id="name"
                             name="name"
@@ -50,7 +50,7 @@ const Account = () => {
                         />
                         </div>
                         <div className="form-group col-lg-6">
-                        <label for="email">Account Email</label>
+                        <label htmlFor="email">Account Email</label>
                         <input
                             id="email"
                             name="email"
@@ -59,7 +59,7 @@ const Account = () => {
                         />
                         </div>
                         <div className="form-group col-lg-6">
-                        <label for="password">Password</label>
+                        <label htmlFor="password">Password</label>
                         <input
                             id="password"
                             name="password"
@@ -68,7 +68,7 @@ const Account = () => {
                         />
                         </div>
                         <div className="form-group col-lg-6">
-                        <label for="password2">Re-enter Password</label>
+                        <label htmlFor="password2">Re-enter Password</label>
                         <input
                             id="password2"
                             name="password2"
@@ -77,7 +77,7 @@ const Account = () => {
                         />
                         </div>
                         <div className="form-group col-lg-6">
-                        <label for="phone">Phone</label>
+                        <label htmlFor="phone">Phone</label>
                         <input
                             id="phone"
                             name="phone"

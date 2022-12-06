@@ -16,3 +16,8 @@ export async function updateProduct(id, data) {
   const res = await instance.patch(`/products/${id}`, data);
   return res;
 }
+export async function deleteProducts(data) {
+  let name = data.toString()
+  const res = await instance.delete(`/products?name=`+name);
+  return res;
+}

@@ -28,37 +28,37 @@ const Login = () => {
     );
   }
   return (
-    <div class="container tm-mt-big tm-mb-big">
-      <div class="row">
-        <div class="col-12 mx-auto tm-login-col">
-          <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
-            <div class="row">
-              <div class="col-12 text-center">
-                <h2 class="tm-block-title mb-4">Welcome to Dashboard, Login</h2>
+    <div className="container tm-mt-big tm-mb-big">
+      <div className="row">
+        <div className="col-12 mx-auto tm-login-col">
+          <div className="tm-bg-primary-dark tm-block tm-block-h-auto">
+            <div className="row">
+              <div className="col-12 text-center">
+                <h2 className="tm-block-title mb-4">Welcome to Dashboard, Login</h2>
               </div>
             </div>
-            <div class="row mt-2">
-              <div class="col-12">
-                <form onSubmit={SignIn} class="tm-login-form">
-                  <div class="form-group">
-                    <label for="username">Username</label>
+            <div className="row mt-2">
+              <div className="col-12">
+                <form onSubmit={SignIn} className="tm-login-form">
+                  <div className="form-group">
+                    <label htmlFor="username">Username</label>
                     <input
                       onChange={handleInputChange}
                       name="username"
                       type="text"
                       value={state.username}
-                      class="form-control validate"
+                      className="form-control validate"
                       id="username"
                       required
                     />
                   </div>
-                  <div class="form-group mt-3">
-                    <label for="password">Password</label>
+                  <div className="form-group mt-3">
+                    <label htmlFor="password">Password</label>
                     <input
                       onChange={handleInputChange}
                       name="password"
                       type="password"
-                      class="form-control validate"
+                      className="form-control validate"
                       id="password"
                       value={state.password}
                       required
@@ -67,15 +67,15 @@ const Login = () => {
                   {error && (
                     <label style={{color: "red", fontSize: 18}} htmlFor="">Sai tài khoản hoặc mật khẩu</label>
                   )}
-                  <div class="form-group mt-4">
+                  <div className="form-group mt-4">
                     <button
                       type="submit"
-                      class="btn btn-primary btn-block text-uppercase"
+                      className="btn btn-primary btn-block text-uppercase"
                     >
                       Login
                     </button>
                   </div>
-                  <button class="mt-5 btn btn-primary btn-block text-uppercase">
+                  <button className="mt-5 btn btn-primary btn-block text-uppercase">
                     Forgot your password?
                   </button>
                 </form>

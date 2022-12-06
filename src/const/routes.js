@@ -1,4 +1,4 @@
-import { Home, Account, Product, Login, AddingProduct, EdittingProduct } from "../pages";
+import { Home, Account, Product, Login, Category, AddingProduct, EdittingProduct, AddingCategory } from "../pages";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default [
@@ -31,10 +31,24 @@ export default [
     },
   },
   {
+    path: ["/category"],
+    exact: true,
+    component: () => {
+      return (<Category />);
+    },
+  },
+  {
     path: ["/product/add"],
     exact: true,
     component: () => {
       return (<AddingProduct />);
+    },
+  },
+  {
+    path: ["/category/add"],
+    exact: true,
+    component: () => {
+      return (<AddingCategory />);
     },
   },
   {
