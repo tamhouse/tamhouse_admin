@@ -130,7 +130,7 @@ const AddingProduct = () => {
                     { (!img || !img.url) && (<i className="fas fa-cloud-upload-alt tm-upload-icon"></i>)}
                   </div>
                   <div className="custom-file mt-3 mb-3">
-                    <input id="image" name='image' type="file" style={styleFile} onChange={imageChange}/>
+                    <input id="image" name='image' type="file" accept="image/*" style={styleFile} onChange={imageChange}/>
                     <input type="button" className="btn btn-primary btn-block mx-auto" value="Tải Ảnh Sản Phẩm"/>
                   </div>
                 </div>

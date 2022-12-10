@@ -54,7 +54,7 @@ const Product = () => {
                       <tr>
                         <th scope="row"><input value={product.name} type="checkbox" onChange={checkboxChange} name='checkbox' /></th>
                         <td className="tm-product-name" style={{maxWidth: 200,}}>{product.name}</td>
-                        <td><img  style={style} src={"http://localhost:3000/img/"+product.img}/></td>
+                        <td><img  style={style} src={process.env.REACT_APP_BASE_URL+"img/"+product.img}/></td>
                         <td>{product.createdAt.substring(0,10)}</td>
                         <td>{product.category}</td>
                         <td>

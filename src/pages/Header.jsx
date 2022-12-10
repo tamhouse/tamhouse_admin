@@ -54,7 +54,7 @@ const Header = () => {
                     <li className="nav-item">
                         <Link className={"nav-link "+state.account} to="/account">
                             <i className="far fa-user"></i>
-                            Tài khoản
+                            Thông tin web
                         </Link>
                     </li>
                 </ul>

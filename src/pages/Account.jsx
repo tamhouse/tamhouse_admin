@@ -1,105 +1,150 @@
+import { useState } from "react";
+import { useEffect } from "react";
+import { getInfor, updateInfor } from "../api/infor.service";
+import { post } from "../api/slide.service";
+
 const Account = () => {
+    const [ infor, setInfor ] = useState({});
+    const [ img, setImg ] = useState([])
+    useEffect(() => {
+        async function Load(){
+            const res = await getInfor();
+            setInfor(res.data[0])
+        }
+        Load()
+    }, [])
+    const update = async (e) => {
+        e.preventDefault();
+        const data = {
+          phone: e.target.phone.value,
+          zalo: e.target.zalo.value,
+          youtube: e.target.youtube.value,
+          facebook: e.target.facebook.value,
+          email: e.target.email.value,
+          address: e.target.address.value,
+        }
+        const res = await updateInfor(data, infor._id);
+        if (res.status === 200){
+          alert("cập nhật thành công");
+        } 
+    }
+    const updateSlide = async (e) => {
+        e.preventDefault();
+        let imgs = []
+        const formData = new FormData();
+        img.forEach((i) => {
+         formData.append("images", i.file);
+        })
+        console.log(imgs)
+        const res = await post(formData);
+        console.log(res)
+        if (res.status === 200){
+          alert("cập nhật thành công");
+        } 
+    }
+    const imageChange = (e) => {
+        if (e.target.files) {
+            let imgs = [];
+            var files = e.target.files;
+            [...files].forEach(file => {
+                imgs.push({
+                    file: file,
+                    url: URL.createObjectURL(file),
+                });
+            });
+            setImg(imgs)
+        }
+      }
     return (
         <div className="" id="home">
             <div className="container mt-5">
                 <div className="row tm-content-row">
-                <div className="col-12 tm-block-col">
-                    <div className="tm-bg-primary-dark tm-block tm-block-h-auto">
-                    <h2 className="tm-block-title">List of Accounts</h2>
-                    <p className="text-white">Accounts</p>
-                    <select className="custom-select">
-                        <option value="0">Select account</option>
-                        <option value="1">Admin</option>
-                        <option value="2">Editor</option>
-                        <option value="3">Merchant</option>
-                        <option value="4">Customer</option>
-                    </select>
-                    </div>
-                </div>
-                </div>
-                <div className="row tm-content-row">
                 <div className="tm-block-col tm-col-avatar">
                     <div className="tm-bg-primary-dark tm-block tm-block-avatar">
-                    <h2 className="tm-block-title">Change Avatar</h2>
-                    <div className="tm-avatar-container">
-                        <img
-                        src="img/avatar.png"
-                        alt="Avatar"
-                        className="tm-avatar img-fluid mb-4"
-                        />
-                        <a href="#" className="tm-avatar-delete-link">
-                        <i className="far fa-trash-alt tm-product-delete-icon"></i>
-                        </a>
-                    </div>
-                    <button className="btn btn-primary btn-block text-uppercase">
-                        Upload New Photo
-                    </button>
+                    <h2 className="tm-block-title">Đổi ảnh quảng cáo</h2>
+                    <form onSubmit={updateSlide} enctype="multipart/form-data">
+                        <div className="tm-avatar-container">
+                            {img && img.map((i) => {
+                                return (<img style={{maxWidth: "100%"}} alt={i.name} src={i.url}/>)
+                            })}
+                            <input onChange={imageChange} type="file" multiple="true" accept="image/*" style={{width: "100%"}}/>
+                        </div>
+                        <button type="submit" className="btn btn-primary btn-block text-uppercase">
+                            cập nhật
+                        </button>
+                    </form>
                     </div>
                 </div>
                 <div className="tm-block-col tm-col-account-settings">
                     <div className="tm-bg-primary-dark tm-block tm-block-settings">
-                    <h2 className="tm-block-title">Account Settings</h2>
-                    <form action="" className="tm-signup-form row">
+                    <h2 className="tm-block-title">Thông tin website</h2>
+                    <form onSubmit={update}  className="tm-signup-form row">
                         <div className="form-group col-lg-6">
-                        <label htmlFor="name">Account Name</label>
+                        <label htmlFor="name">SĐT</label>
                         <input
-                            id="name"
-                            name="name"
+                            id="phone"
+                            name="phone"
                             type="text"
+                            defaultValue={infor.phone}
                             className="form-control validate"
                         />
                         </div>
                         <div className="form-group col-lg-6">
-                        <label htmlFor="email">Account Email</label>
+                        <label htmlFor="email">Email</label>
                         <input
                             id="email"
                             name="email"
+                            defaultValue={infor.email}
                             type="email"
                             className="form-control validate"
                         />
                         </div>
                         <div className="form-group col-lg-6">
-                        <label htmlFor="password">Password</label>
+                        <label htmlFor="address">Địa chỉ</label>
                         <input
-                            id="password"
-                            name="password"
-                            type="password"
+                            id="address"
+                            name="address"
+                            defaultValue={infor.address}
+                            type="text"
                             className="form-control validate"
                         />
                         </div>
                         <div className="form-group col-lg-6">
-                        <label htmlFor="password2">Re-enter Password</label>
+                        <label htmlFor="facebook">link Facebook</label>
                         <input
-                            id="password2"
-                            name="password2"
-                            type="password"
+                            id="facebook"
+                            name="facebook"
+                            defaultValue={infor.facebook}
+                            type="text"
                             className="form-control validate"
                         />
                         </div>
                         <div className="form-group col-lg-6">
-                        <label htmlFor="phone">Phone</label>
+                        <label htmlFor="youtube">link Youtube</label>
                         <input
-                            id="phone"
-                            name="phone"
+                            id="youtube"
+                            name="youtube"
+                            defaultValue={infor.youtube}
                             type="tel"
                             className="form-control validate"
                         />
                         </div>
                         <div className="form-group col-lg-6">
-                        <label className="tm-hide-sm">&nbsp;</label>
-                        <button
-                            type="submit"
-                            className="btn btn-primary btn-block text-uppercase"
-                        >
-                            Update Your Profile
-                        </button>
+                        <label htmlFor="zalo">số Zalo</label>
+                        <input
+                            id="zalo"
+                            name="zalo"
+                            defaultValue={infor.zalo}
+                            type="tel"
+                            className="form-control validate"
+                        />
                         </div>
                         <div className="col-12">
                         <button
                             type="submit"
                             className="btn btn-primary btn-block text-uppercase"
                         >
-                            Delete Your Account
+                            Cập nhật thông tin
                         </button>
                         </div>
                     </form>

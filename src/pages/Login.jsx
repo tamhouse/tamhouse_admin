@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import Cookies from 'universal-cookie';
-import { config } from '../const';
 const Login = () => {
   const [state, setState] = useState({});
   const [error, setError] = useState(false);
   const SignIn = (e) => {
     e.preventDefault();
     const cookies = new Cookies();
-    if(config.name === state.username && config.pass === state.password){
-      console.log(config)
-      cookies.set("auth", config.auth)
+    if(state.username === process.env.REACT_APP_NAME && state.password === process.env.REACT_APP_PASS){
+      let d = new Date();
+      d.setTime(d.getTime() + (3*24*60*60*1000));
+      cookies.set("auth", process.env.REACT_APP_AUTH,  {path: "/", expires: d})
       window.location.href = "/"
     }
     else{
@@ -75,9 +75,6 @@ const Login = () => {
                       Login
                     </button>
                   </div>
-                  <button className="mt-5 btn btn-primary btn-block text-uppercase">
-                    Forgot your password?
-                  </button>
                 </form>
               </div>
             </div>

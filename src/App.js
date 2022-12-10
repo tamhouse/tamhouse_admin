@@ -3,7 +3,7 @@ import './css/bootstrap.min.css'
 import './css/fontawesome.min.css'
 import './css/templatemo-style.css'
 import './css/font.css'
-import { config, routes } from "./const";
+import { routes } from "./const";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Header, Footer, Login } from './pages';
 import Cookies from 'universal-cookie';
@@ -11,7 +11,7 @@ import Cookies from 'universal-cookie';
 function App() {
   const cookies = new Cookies();
   const auth = cookies.get("auth")
-  if(auth === undefined || auth !== config.auth)
+  if(auth === undefined || auth !== process.env.REACT_APP_AUTH)
     return (<Login/>)
   else return (
     <Router>
